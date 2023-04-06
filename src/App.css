@@ -7,10 +7,28 @@
   pointer-events: none;
 }
 
+a {
+  text-decoration: none;
+  color: #c1d37f;
+}
+
+a:hover {
+  background-color: blue;
+  border-radius: 2px;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
 .navbar {
   display: flex;
+  justify-content: flex-end;
   align-items: center;
-  justify-content: space-between;
+  gap: 50px;
+  background: #664e4c;
+  color: #c1d37f;
+  padding: 16px 16px;
 }
 
 .navbar img {
@@ -18,9 +36,22 @@
   height: 20px;
 }
 
-/* .user {
+.links {
   display: flex;
-} */
+}
+
+.links a {
+  padding: 0px 8px;
+}
+
+.user {
+  display: flex;
+  align-items: center;
+}
+
+.user > * {
+  padding: 0px 8px;
+}
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
