@@ -13,7 +13,7 @@ a {
 }
 
 a:hover {
-  background-color: blue;
+  background-color: #A88C8A;
   border-radius: 2px;
 }
 
@@ -34,6 +34,7 @@ button:hover {
 .navbar img {
   width: 20px;
   height: 20px;
+  border-radius: 50%;
 }
 
 .links {
@@ -51,6 +52,10 @@ button:hover {
 
 .user > * {
   padding: 0px 8px;
+}
+
+.submit:hover {
+  cursor: pointer;
 }
 
 @media (prefers-reduced-motion: no-preference) {
