@@ -13,7 +13,7 @@ a {
 }
 
 a:hover {
-  background-color: #A88C8A;
+  background-color: #a88c8a;
   border-radius: 2px;
 }
 
@@ -56,6 +56,31 @@ button:hover {
 
 .submit:hover {
   cursor: pointer;
+}
+
+.form-box {
+  display: flex;
+  justify-content: center;
+}
+
+form {
+  margin-top: 50px;
+  padding: 30px 20px;
+  background: #a88c8a;
+  width: 350px;
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+input,
+textarea {
+  padding: 8px 18px;
+  margin: 3px 8px 16px 8px;
+  background-color: rgba(222, 239, 248, 0.877);
+  border: 0px transparent;
+  border-radius: 5px;
+  font-size: 16px;
+  z-index: 1;
 }
 
 @media (prefers-reduced-motion: no-preference) {
