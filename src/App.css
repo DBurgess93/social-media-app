@@ -88,6 +88,12 @@ textarea {
   z-index: 1;
 }
 
+.like-btn {
+  border: none;
+  border-radius: 100px;
+  background: none;
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
