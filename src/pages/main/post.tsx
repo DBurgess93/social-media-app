@@ -1,4 +1,12 @@
-import { addDoc, getDocs, collection, query, where } from "firebase/firestore";
+import {
+  addDoc,
+  getDocs,
+  collection,
+  query,
+  where,
+  deleteDoc,
+  doc,
+} from "firebase/firestore";
 import { Post as IPost } from "./main";
 import { auth, db } from "../../config/firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
@@ -8,6 +16,7 @@ interface Props {
 }
 
 interface Like {
+  likeId: string;
   userId: string;
 }
 
@@ -23,11 +32,46 @@ export const Post = (props: Props) => {
 
   const getLikes = async () => {
     const data = await getDocs(likesDoc);
-    setLikes(data.docs.map((doc) => ({ userId: doc.data().userId })));
+    setLikes(
+      data.docs.map((doc) => ({ userId: doc.data().userId, likeId: doc.id }))
+    );
   };
 
   const addLike = async () => {
-    await addDoc(likesRef, { userId: user?.uid, postId: post.id });
+    try {
+      const newDoc = await addDoc(likesRef, {
+        userId: user?.uid,
+        postId: post.id,
+      });
+      if (user) {
+        setLikes((prev) =>
+          prev
+            ? [...prev, { userId: user?.uid, likeId: newDoc.id }]
+            : [{ userId: user.uid, likeId: newDoc.id }]
+        );
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const removeLike = async () => {
+    try {
+      const liketoDeleteQuery = query(
+        likesRef,
+        where("postId", "==", post.id),
+        where("userId", "==", user?.uid)
+      );
+      const likeToDeleteData = await getDocs(liketoDeleteQuery);
+      const likeId = likeToDeleteData.docs[0].id;
+      const liketoDelete = doc(db, "likes", likeId);
+      await deleteDoc(liketoDelete);
+      if (user) {
+        setLikes((prev) => prev && prev.filter((like) => like.likeId !== likeId));
+      }
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   const hasUserLiked = likes?.find((like) => like.userId === user?.uid);
@@ -47,7 +91,10 @@ export const Post = (props: Props) => {
         </div>
         <div className="footer">
           <p>@{post.username}</p>
-          <button onClick={addLike} className="like-btn">
+          <button
+            onClick={hasUserLiked ? removeLike : addLike}
+            className="like-btn"
+          >
             {hasUserLiked ? <>&#x1F920;</> : <>&#x1F636;</>}
           </button>
           {likes && <p> Likes: {likes?.length}</p>}
