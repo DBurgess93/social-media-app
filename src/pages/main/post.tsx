@@ -42,8 +42,7 @@ export const Post = (props: Props) => {
         <div className="footer">
           <p>@{post.username}</p>
           <button onClick={addLike} className="like-btn">
-            {" "}
-            &#x1F920;{" "}
+            &#x1F920;
           </button>
           {likeAmount && <p> Likes: {likeAmount}</p>}
         </div>
