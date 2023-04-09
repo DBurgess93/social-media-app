@@ -4,6 +4,7 @@
 
 body {
   font-family: 'Satoshi', sans-serif;
+  background-color: #E5DFD0;
 }
 
 .App-logo {
@@ -13,7 +14,7 @@ body {
 
 a {
   text-decoration: none;
-  color: #c1d37f;
+  color: #131210;
 }
 
 a:hover {
@@ -30,10 +31,13 @@ button:hover {
   justify-content: flex-end;
   align-items: center;
   gap: 50px;
-  background: #664e4c;
-  color: #c1d37f;
+  background: #E5DFD0;
+  color: #131210;
   padding: 16px 16px;
   font-family: 'Satoshi', sans-serif;
+  font-size: 20px;
+  border-top: #131210 solid;
+  border-bottom: #131210 solid;
 }
 
 .navbar img {
@@ -47,7 +51,12 @@ button:hover {
 }
 
 .links a {
-  padding: 0px 8px;
+  padding: 2px 8px;
+}
+
+.links a:hover {
+  background-color: #13121022;
+  border-radius: 4px;
 }
 
 .user {
@@ -94,6 +103,7 @@ textarea {
   border-radius: 8px;
   margin: 8px;
   width: 500px;
+  background: #f0c58b;
 }
 
 .title {
