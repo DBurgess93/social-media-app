@@ -67,7 +67,9 @@ export const Post = (props: Props) => {
       const liketoDelete = doc(db, "likes", likeId);
       await deleteDoc(liketoDelete);
       if (user) {
-        setLikes((prev) => prev && prev.filter((like) => like.likeId !== likeId));
+        setLikes(
+          (prev) => prev && prev.filter((like) => like.likeId !== likeId)
+        );
       }
     } catch (err) {
       console.log(err);
@@ -81,8 +83,8 @@ export const Post = (props: Props) => {
   }, []);
 
   return (
-    <div>
-      <div>
+    <div className="justify-center">
+      <div className="post">
         <div className="title">
           <h1>{post.title}</h1>
         </div>
@@ -97,7 +99,7 @@ export const Post = (props: Props) => {
           >
             {hasUserLiked ? <>&#x1F920;</> : <>&#x1F636;</>}
           </button>
-          {likes && <p> Likes: {likes?.length}</p>}
+          {likes && <p>{likes?.length}</p>}
         </div>
       </div>
     </div>

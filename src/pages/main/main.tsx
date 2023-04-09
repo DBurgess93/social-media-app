@@ -20,16 +20,16 @@ export const Main = () => {
     setPostsList(
       data.docs.map((doc) => ({ ...doc.data(), id: doc.id })) as Post[]
     );
-  }; 
+  };
 
   useEffect(() => {
     getPosts();
   }, []);
   return (
     <div>
-      <h1>Homepage</h1>
+      <h1>Todays News</h1>
       {postsList?.map((post) => (
-        <Post post={post}/>
+        <Post post={post} />
       ))}
     </div>
   );

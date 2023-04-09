@@ -88,6 +88,32 @@ textarea {
   z-index: 1;
 }
 
+.post {
+  border: #282c34 solid;
+  box-shadow: #282c34 2px 2px;
+  border-radius: 8px;
+  margin: 8px;
+  width: 500px;
+}
+
+.title {
+
+}
+
+.body {
+
+}
+
+.justify-center {
+  display: flex;
+  justify-content: center;
+}
+
+.footer {
+  display: flex;
+  justify-content: center;
+}
+
 .like-btn {
   border: none;
   border-radius: 100px;
