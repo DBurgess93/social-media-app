@@ -69,6 +69,7 @@ export const Post = (props: Props) => {
     } catch (err) {
       console.log(err);
     }
+    removeWow()
   };
   const addWow = async () => {
     try {
@@ -86,6 +87,7 @@ export const Post = (props: Props) => {
     } catch (err) {
       console.log(err);
     }
+    removeLike()
   };
 
   const removeLike = async () => {
@@ -148,7 +150,6 @@ export const Post = (props: Props) => {
   useEffect(() => {
     getWows();
   }, []);
-
 
   return (
     <div className="justify-center">
