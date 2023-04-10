@@ -106,6 +106,20 @@ textarea {
   background: #f0c58b;
 }
 
+.header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.userReaction {
+  border: none;
+  border-radius: 100px;
+  background: none;
+  margin: 0px 8px;
+  font-size: 24px;
+  align-items: ;
+}
+
 .username {
   display: flex;
   justify-content: flex-start;

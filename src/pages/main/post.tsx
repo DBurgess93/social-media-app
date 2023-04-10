@@ -6,6 +6,7 @@ import {
   where,
   deleteDoc,
   doc,
+  endAt,
 } from "firebase/firestore";
 import { Post as IPost } from "./main";
 import { auth, db } from "../../config/firebase";
@@ -130,6 +131,16 @@ export const Post = (props: Props) => {
   const hasUserLiked = likes?.find((like) => like.userId === user?.uid);
   const hasUserWowed = wows?.find((wow) => wow.userId === user?.uid);
 
+  const userReaction = () => {
+    if (hasUserLiked) {
+      return <>&#x1F920;</>;
+    } else if (hasUserWowed) {
+      return <>&#x1F92F;</>;
+    } else {
+      return <>&#x1F636;</>;
+    }
+  };
+
   useEffect(() => {
     getLikes();
   }, []);
@@ -137,12 +148,17 @@ export const Post = (props: Props) => {
   return (
     <div className="justify-center">
       <div className="post">
-        <p className="username">@{post.username}</p>
+        <div className="header">
+          <p className="username">@{post.username}</p>
+          <p className="userReaction">{userReaction()}</p>
+        </div>
         <div className="title">
           <h1>{post.title}</h1>
         </div>
         <div className="body">
-          <p> {post.description} </p>
+          <div>
+            <p> {post.description} </p>
+          </div>
           <div className="footer">
             <div className="reactions">
               <div className="reaction">
@@ -151,7 +167,7 @@ export const Post = (props: Props) => {
                   onClick={hasUserLiked ? removeLike : addLike}
                   className="like-btn"
                 >
-                  {hasUserLiked ? <>&#x1F920;</> : <>&#x1F636;</>}
+                  &#x1F920;
                 </button>
               </div>
               <div className="reaction">
@@ -160,7 +176,7 @@ export const Post = (props: Props) => {
                   onClick={hasUserWowed ? removeWow : addWow}
                   className="like-btn"
                 >
-                  {hasUserWowed ? <>&#x1F92F;</> : <>&#x1F636;</>}
+                  &#x1F92F;
                 </button>
               </div>
             </div>
