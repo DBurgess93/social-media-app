@@ -133,6 +133,11 @@ textarea {
   padding: 0px 16px;
 }
 
+.post-description {
+  width: 400px;
+  overflow: auto;
+}
+
 .justify-center {
   display: flex;
   justify-content: center;
@@ -185,6 +190,27 @@ textarea {
   margin: 8px;
   border: #282c34 solid;
   background: #e5dfd096;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 8px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
 }
 
 @media (prefers-reduced-motion: no-preference) {
