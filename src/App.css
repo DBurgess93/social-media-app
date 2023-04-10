@@ -3,8 +3,8 @@
 }
 
 body {
-  font-family: 'Satoshi', sans-serif;
-  background-color: #E5DFD0;
+  font-family: "Satoshi", sans-serif;
+  background-color: #e5dfd0;
 }
 
 .App-logo {
@@ -31,10 +31,10 @@ button:hover {
   justify-content: flex-end;
   align-items: center;
   gap: 50px;
-  background: #E5DFD0;
+  background: #e5dfd0;
   color: #131210;
   padding: 16px 16px;
-  font-family: 'Satoshi', sans-serif;
+  font-family: "Satoshi", sans-serif;
   font-size: 20px;
   border-top: #131210 solid;
   border-bottom: #131210 solid;
@@ -111,13 +111,12 @@ textarea {
   justify-content: space-between;
 }
 
-.userReaction {
+.user-reaction {
   border: none;
   border-radius: 100px;
   background: none;
-  margin: 0px 8px;
+  margin: 4px 8px;
   font-size: 24px;
-  align-items: ;
 }
 
 .username {
@@ -125,7 +124,6 @@ textarea {
   justify-content: flex-start;
   margin: 8px;
 }
-
 
 .title h1 {
   padding: 0px 8px;
@@ -147,7 +145,7 @@ textarea {
 
 .footer {
   display: flex;
-  justify-content: space-between;;
+  justify-content: space-between;
 }
 
 .footer p {
@@ -168,7 +166,13 @@ textarea {
 }
 
 .reaction p {
-  margin: 0px 8px;
+  margin: 0px 0px 0px 16px;
+  font-size: 16px;
+  padding: 0px;
+}
+
+.reaction button {
+  padding: 0px;
 }
 
 .comment {
@@ -181,10 +185,6 @@ textarea {
   margin: 8px;
   border: #282c34 solid;
   background: #e5dfd096;
-}
-
-.submit-comment {
-
 }
 
 @media (prefers-reduced-motion: no-preference) {

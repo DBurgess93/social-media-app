@@ -155,7 +155,7 @@ export const Post = (props: Props) => {
       <div className="post">
         <div className="header">
           <p className="username">@{post.username}</p>
-          <p className="userReaction">{userReaction()}</p>
+          <p className="user-reaction">{userReaction()}</p>
         </div>
         <div className="title">
           <h1>{post.title}</h1>
