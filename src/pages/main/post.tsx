@@ -20,20 +20,35 @@ interface Like {
   userId: string;
 }
 
+interface Wow {
+  wowId: string;
+  userId: string;
+}
+
 export const Post = (props: Props) => {
   const { post } = props;
   const [user] = useAuthState(auth);
 
   const [likes, setLikes] = useState<Like[] | null>(null);
+  const [wows, setWows] = useState<Wow[] | null>(null);
 
   const likesRef = collection(db, "likes");
+  const wowsRef = collection(db, "wows");
 
   const likesDoc = query(likesRef, where("postId", "==", post.id));
+  const wowsDoc = query(wowsRef, where("postId", "==", post.id));
 
   const getLikes = async () => {
     const data = await getDocs(likesDoc);
     setLikes(
       data.docs.map((doc) => ({ userId: doc.data().userId, likeId: doc.id }))
+    );
+  };
+
+  const getWows = async () => {
+    const data = await getDocs(wowsDoc);
+    setWows(
+      data.docs.map((doc) => ({ userId: doc.data().userId, wowId: doc.id }))
     );
   };
 
@@ -48,6 +63,23 @@ export const Post = (props: Props) => {
           prev
             ? [...prev, { userId: user?.uid, likeId: newDoc.id }]
             : [{ userId: user.uid, likeId: newDoc.id }]
+        );
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+  const addWow = async () => {
+    try {
+      const newDoc = await addDoc(wowsRef, {
+        userId: user?.uid,
+        postId: post.id,
+      });
+      if (user) {
+        setWows((prev) =>
+          prev
+            ? [...prev, { userId: user?.uid, wowId: newDoc.id }]
+            : [{ userId: user.uid, wowId: newDoc.id }]
         );
       }
     } catch (err) {
@@ -76,7 +108,27 @@ export const Post = (props: Props) => {
     }
   };
 
+  const removeWow = async () => {
+    try {
+      const wowtoDeleteQuery = query(
+        wowsRef,
+        where("postId", "==", post.id),
+        where("userId", "==", user?.uid)
+      );
+      const wowToDeleteData = await getDocs(wowtoDeleteQuery);
+      const wowId = wowToDeleteData.docs[0].id;
+      const wowtoDelete = doc(db, "wows", wowId);
+      await deleteDoc(wowtoDelete);
+      if (user) {
+        setWows((prev) => prev && prev.filter((wow) => wow.wowId !== wowId));
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   const hasUserLiked = likes?.find((like) => like.userId === user?.uid);
+  const hasUserWowed = wows?.find((wow) => wow.userId === user?.uid);
 
   useEffect(() => {
     getLikes();
@@ -103,8 +155,13 @@ export const Post = (props: Props) => {
                 </button>
               </div>
               <div className="reaction">
-                <p>*</p>
-                <button className="like-btn">&#x1F92F;</button>
+                {wows && <p>{wows?.length}</p>}
+                <button
+                  onClick={hasUserWowed ? removeWow : addWow}
+                  className="like-btn"
+                >
+                  {hasUserWowed ? <>&#x1F92F;</> : <>&#x1F636;</>}
+                </button>
               </div>
             </div>
             <div className="comment">
