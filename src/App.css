@@ -101,17 +101,24 @@ textarea {
   border: #282c34 solid;
   box-shadow: #282c34 2px 2px;
   border-radius: 8px;
-  margin: 8px;
+  margin: 6px;
   width: 500px;
   background: #f0c58b;
 }
 
-.title {
-
+.username {
+  display: flex;
+  justify-content: flex-start;
+  margin: 8px;
 }
 
-.body {
 
+.title h1 {
+  padding: 0px 8px;
+}
+
+.body p {
+  padding: 0px 16px;
 }
 
 .justify-center {
@@ -119,15 +126,47 @@ textarea {
   justify-content: center;
 }
 
+.justify-start {
+  display: flex;
+  justify-content: flex-start;
+}
+
 .footer {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;;
+}
+
+.footer p {
+  margin: 8px;
+  font-size: 24px;
 }
 
 .like-btn {
   border: none;
   border-radius: 100px;
   background: none;
+  margin: 0px 8px;
+  font-size: 24px;
+}
+
+.likes p {
+  margin: 0px 8px;
+}
+
+.comment {
+  display: flex;
+  align-items: flex-end;
+}
+
+.comment input {
+  height: 16px;
+  margin: 8px;
+  border: #282c34 solid;
+  background: #e5dfd096;
+}
+
+.submit-comment {
+
 }
 
 @media (prefers-reduced-motion: no-preference) {

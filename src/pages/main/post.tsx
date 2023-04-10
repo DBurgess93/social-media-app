@@ -85,21 +85,26 @@ export const Post = (props: Props) => {
   return (
     <div className="justify-center">
       <div className="post">
+        <p className="username">@{post.username}</p>
         <div className="title">
           <h1>{post.title}</h1>
         </div>
         <div className="body">
           <p> {post.description} </p>
-        </div>
-        <div className="footer">
-          <p>@{post.username}</p>
-          <button
-            onClick={hasUserLiked ? removeLike : addLike}
-            className="like-btn"
-          >
-            {hasUserLiked ? <>&#x1F920;</> : <>&#x1F636;</>}
-          </button>
-          {likes && <p>{likes?.length}</p>}
+          <div className="footer">
+            <div className="likes">
+              {likes && <p>{likes?.length}</p>}
+              <button
+                onClick={hasUserLiked ? removeLike : addLike}
+                className="like-btn"
+              >
+                {hasUserLiked ? <>&#x1F920;</> : <>&#x1F636;</>}
+              </button>
+            </div>
+            <div className="comment">
+              <input className="submit-comment" placeholder="Add a comment...." />
+            </div>
+          </div>
         </div>
       </div>
     </div>
