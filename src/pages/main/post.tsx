@@ -145,6 +145,11 @@ export const Post = (props: Props) => {
     getLikes();
   }, []);
 
+  useEffect(() => {
+    getWows();
+  }, []);
+
+
   return (
     <div className="justify-center">
       <div className="post">
