@@ -92,17 +92,26 @@ export const Post = (props: Props) => {
         <div className="body">
           <p> {post.description} </p>
           <div className="footer">
-            <div className="likes">
-              {likes && <p>{likes?.length}</p>}
-              <button
-                onClick={hasUserLiked ? removeLike : addLike}
-                className="like-btn"
-              >
-                {hasUserLiked ? <>&#x1F920;</> : <>&#x1F636;</>}
-              </button>
+            <div className="reactions">
+              <div className="reaction">
+                {likes && <p>{likes?.length}</p>}
+                <button
+                  onClick={hasUserLiked ? removeLike : addLike}
+                  className="like-btn"
+                >
+                  {hasUserLiked ? <>&#x1F920;</> : <>&#x1F636;</>}
+                </button>
+              </div>
+              <div className="reaction">
+                <p>*</p>
+                <button className="like-btn">&#x1F92F;</button>
+              </div>
             </div>
             <div className="comment">
-              <input className="submit-comment" placeholder="Add a comment...." />
+              <input
+                className="submit-comment"
+                placeholder="Add a comment...."
+              />
             </div>
           </div>
         </div>
