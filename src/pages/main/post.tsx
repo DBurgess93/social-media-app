@@ -35,6 +35,7 @@ interface Comment {
   commentId: string;
   userId: string;
   commentDesc: string;
+  commentAuth: string | null;
 }
 
 export const Post = (props: Props) => {
@@ -85,14 +86,18 @@ export const Post = (props: Props) => {
   };
 
   const getComments = async () => {
+    // console.log("fetching comments from DB")
     const data = await getDocs(commentsDoc);
+    // console.log("retrieved comments", data.docs)
     setComments(
       data.docs.map((doc) => ({
         userId: doc.data().userId,
         commentId: doc.id,
         commentDesc: doc.data().description,
+        commentAuth: doc.data().commentAuth,
       }))
     );
+    // console.log(comments)
   };
 
   // This function uses await to pause the execution until a newDoc is added with the userId and postId
@@ -166,6 +171,7 @@ export const Post = (props: Props) => {
         userId: user?.uid,
         postId: post.id,
         commentDesc: commentInput,
+        commentAuth: user?.displayName,
       });
       if (user) {
         setComments((prev) =>
@@ -176,6 +182,7 @@ export const Post = (props: Props) => {
                   userId: user?.uid,
                   commentId: newDoc.id,
                   commentDesc: commentInput,
+                  commentAuth: user?.displayName,
                 },
               ]
             : [
@@ -183,6 +190,7 @@ export const Post = (props: Props) => {
                   userId: user?.uid,
                   commentId: newDoc.id,
                   commentDesc: commentInput,
+                  commentAuth: user?.displayName,
                 },
               ]
         );
@@ -192,6 +200,7 @@ export const Post = (props: Props) => {
       console.log(err);
     }
     setIsLoading(false);
+    console.log(commentDesc);
   };
 
   // This first queries the collection of likes for the post in likesRef. Awaits the execution then stores the data in likeToDeleteData.
@@ -302,6 +311,7 @@ export const Post = (props: Props) => {
     getComments();
   }, []);
 
+  console.log(comments)
   return (
     <div className="justify-center">
       <div className="post">
@@ -361,10 +371,12 @@ export const Post = (props: Props) => {
         </form>
         <div className="comments-display">
           {comments &&
-            comments.map((comment) => (
+            comments
+            .map((comment) => (
               <div key={comment.commentId}>
-                <p>{comment.commentDesc}</p>
-                <span>by {comment.userId}</span>
+                <p>
+                  @{comment.commentAuth}: {comment.commentDesc}
+                </p>
               </div>
             ))}
         </div>
