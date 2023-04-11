@@ -182,27 +182,34 @@ textarea {
 
 .comment-section {
   margin: 6px;
+  width: 300px;
 }
 
-.comment {
+.comment-form {
   display: flex;
-  flex-direction: column;
   align-items: flex-end;
 }
 
-.comment input, textarea {
+.submit-comment {
   height: 20px;
+  width: 250px;
   margin: 2px;
   border: #282c34 solid;
   background: #e5dfd096;
 }
 
+.submit-comment-btn {
+  height: 42px;
+}
+
 .comments-display {
+  height: 150px;
+  overflow: auto;
 }
 
 .comments-display p {
-  margin: 2px;
-  text-align: center;
+  margin: 8px 0px;
+  text-align: start;
 }
 
 .each-comment {

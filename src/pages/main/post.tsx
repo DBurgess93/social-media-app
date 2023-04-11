@@ -356,14 +356,14 @@ export const Post = (props: Props) => {
         </div>
       </div>
       <div className="comment-section">
-        <form className="comment" onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className="comment-form">
           <textarea
             placeholder="Add a comment...."
             className="submit-comment"
             value={commentInput}
             onChange={handleChange}
           />
-          <input type="submit" />
+          <input type="submit" className="submit-comment-btn"/>
         </form>
         <div className="comments-display">
           {comments &&
