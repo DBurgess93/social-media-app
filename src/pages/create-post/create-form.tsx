@@ -30,6 +30,7 @@ export const CreateForm = () => {
 
   const postsRef = collection(db, "posts");
 
+  // This may come in handy for commenting
   const onCreatePost = async (data: CreateFormData) => {
     await addDoc(postsRef, {
       title: data.title,

@@ -274,13 +274,19 @@ export const Post = (props: Props) => {
                 </button>
               </div>
             </div>
-            <div className="comment">
-              <input
-                className="submit-comment"
-                placeholder="Add a comment...."
-              />
-            </div>
           </div>
+        </div>
+      </div>
+      <div className="comment-section">
+        <form className="comment">
+          <textarea
+            placeholder="Add a comment...."
+            className="submit-comment"
+          />
+          <input type="submit" />
+        </form>
+        <div className="comments-display">
+          <p>Comments</p>
         </div>
       </div>
     </div>
