@@ -31,6 +31,12 @@ interface Think {
   userId: string;
 }
 
+interface Comment {
+  commentId: string;
+  userId: string;
+  commentDesc: string;
+}
+
 export const Post = (props: Props) => {
   const { post } = props;
   const [user] = useAuthState(auth);
@@ -38,16 +44,21 @@ export const Post = (props: Props) => {
   const [likes, setLikes] = useState<Like[] | null>(null);
   const [wows, setWows] = useState<Wow[] | null>(null);
   const [thinks, setThinks] = useState<Think[] | null>(null);
+  const [comments, setComments] = useState<Comment[] | null>(null);
+  const [commentInput, setCommentInput] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   // Grabs the full collection from firestore database
   const likesRef = collection(db, "likes");
   const wowsRef = collection(db, "wows");
   const thinksRef = collection(db, "thinks");
+  const commentsRef = collection(db, "comments");
 
   // Queries the collection and grabs only those objects with the same post IDs
   const likesDoc = query(likesRef, where("postId", "==", post.id));
   const wowsDoc = query(wowsRef, where("postId", "==", post.id));
   const thinksDoc = query(thinksRef, where("postId", "==", post.id));
+  const commentsDoc = query(commentsRef, where("postId", "==", post.id));
 
   // Await is used to pause functions execution until the getDocs function has fetched the data and stored is it 'data'
   // The setLikes useState function is then used to map through the fetched 'data', creating a new object for each one (userId & likeId)
@@ -70,6 +81,17 @@ export const Post = (props: Props) => {
     const data = await getDocs(thinksDoc);
     setThinks(
       data.docs.map((doc) => ({ userId: doc.data().userId, thinkId: doc.id }))
+    );
+  };
+
+  const getComments = async () => {
+    const data = await getDocs(commentsDoc);
+    setComments(
+      data.docs.map((doc) => ({
+        userId: doc.data().userId,
+        commentId: doc.id,
+        commentDesc: doc.data().description,
+      }))
     );
   };
 
@@ -135,6 +157,41 @@ export const Post = (props: Props) => {
     }
     removeLike();
     removeWow();
+  };
+
+  const addComment = async (commentDesc: string) => {
+    setIsLoading(true);
+    try {
+      const newDoc = await addDoc(commentsRef, {
+        userId: user?.uid,
+        postId: post.id,
+        commentDesc: commentInput,
+      });
+      if (user) {
+        setComments((prev) =>
+          prev
+            ? [
+                ...prev,
+                {
+                  userId: user?.uid,
+                  commentId: newDoc.id,
+                  commentDesc: commentInput,
+                },
+              ]
+            : [
+                {
+                  userId: user?.uid,
+                  commentId: newDoc.id,
+                  commentDesc: commentInput,
+                },
+              ]
+        );
+      }
+      setCommentInput("");
+    } catch (err) {
+      console.log(err);
+    }
+    setIsLoading(false);
   };
 
   // This first queries the collection of likes for the post in likesRef. Awaits the execution then stores the data in likeToDeleteData.
@@ -206,6 +263,17 @@ export const Post = (props: Props) => {
   const hasUserWowed = wows?.find((wow) => wow.userId === user?.uid);
   const hasUserThinked = thinks?.find((think) => think.userId === user?.uid);
 
+  const handleChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setCommentInput(event.target.value);
+  };
+
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    if (commentInput.trim()) {
+      addComment(commentInput);
+    }
+  };
+
   const userReaction = () => {
     if (hasUserLiked) {
       return <>&#x1F920;</>;
@@ -228,6 +296,10 @@ export const Post = (props: Props) => {
 
   useEffect(() => {
     getThinks();
+  }, []);
+
+  useEffect(() => {
+    getComments();
   }, []);
 
   return (
@@ -278,15 +350,23 @@ export const Post = (props: Props) => {
         </div>
       </div>
       <div className="comment-section">
-        <form className="comment">
+        <form className="comment" onSubmit={handleSubmit}>
           <textarea
             placeholder="Add a comment...."
             className="submit-comment"
+            value={commentInput}
+            onChange={handleChange}
           />
           <input type="submit" />
         </form>
         <div className="comments-display">
-          <p>Comments</p>
+          {comments &&
+            comments.map((comment) => (
+              <div key={comment.commentId}>
+                <p>{comment.commentDesc}</p>
+                <span>by {comment.userId}</span>
+              </div>
+            ))}
         </div>
       </div>
     </div>
