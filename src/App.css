@@ -198,12 +198,15 @@ textarea {
 }
 
 .comments-display {
-
 }
 
 .comments-display p {
   margin: 2px;
   text-align: center;
+}
+
+.each-comment {
+  width: 250px;
 }
 
 /* width */

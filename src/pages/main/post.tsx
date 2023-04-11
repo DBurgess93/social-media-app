@@ -86,18 +86,15 @@ export const Post = (props: Props) => {
   };
 
   const getComments = async () => {
-    // console.log("fetching comments from DB")
     const data = await getDocs(commentsDoc);
-    // console.log("retrieved comments", data.docs)
     setComments(
       data.docs.map((doc) => ({
         userId: doc.data().userId,
         commentId: doc.id,
-        commentDesc: doc.data().description,
+        commentDesc: doc.data().commentDesc,
         commentAuth: doc.data().commentAuth,
       }))
     );
-    // console.log(comments)
   };
 
   // This function uses await to pause the execution until a newDoc is added with the userId and postId
@@ -200,7 +197,6 @@ export const Post = (props: Props) => {
       console.log(err);
     }
     setIsLoading(false);
-    console.log(commentDesc);
   };
 
   // This first queries the collection of likes for the post in likesRef. Awaits the execution then stores the data in likeToDeleteData.
@@ -373,7 +369,7 @@ export const Post = (props: Props) => {
           {comments &&
             comments
             .map((comment) => (
-              <div key={comment.commentId}>
+              <div key={comment.commentId} className="each-comment">
                 <p>
                   @{comment.commentAuth}: {comment.commentDesc}
                 </p>
