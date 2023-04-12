@@ -307,21 +307,24 @@ export const Post = (props: Props) => {
     getComments();
   }, []);
 
-  console.log(comments)
+  const postContent = document.querySelector('.post-content');
+  const commentSection = document.querySelector('.comment-section') as HTMLElement;
+  if (postContent && commentSection) {
+    commentSection.style.height = postContent.clientHeight + 'px';
+  }
+
   return (
-    <div className="justify-center">
-      <div className="post">
+    <div className="body-content">
+      <div className="post-content" id="post-content">
         <div className="header">
           <p className="username">@{post.username}</p>
           <p className="user-reaction">{userReaction()}</p>
         </div>
-        <div className="title">
-          <h1>{post.title}</h1>
+        <div className="banana">
+          <h1 className="title">{post.title}</h1>
+          <p className="post-description"> {post.description} </p>
         </div>
         <div className="body">
-          <div className="justify-center">
-            <p className="post-description"> {post.description} </p>
-          </div>
           <div className="footer">
             <div className="reactions">
               <div className="reaction">

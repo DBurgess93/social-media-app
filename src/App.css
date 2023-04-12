@@ -7,6 +7,12 @@ body {
   background-color: #e5dfd0;
 }
 
+.body-content {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
@@ -107,12 +113,16 @@ textarea {
   height: 150px;
 }
 
-.post {
+.post-content + .comment-section {
+  margin-left: 10px;
+}
+
+.post-content {
   border: #282c34 solid;
   box-shadow: #282c34 2px 2px;
   border-radius: 8px;
   margin: 6px;
-  width: 500px;
+  width: 600px;
   background: #f0c58b;
 }
 
@@ -135,7 +145,14 @@ textarea {
   margin: 8px;
 }
 
-.title h1 {
+.banana {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.title {
   padding: 0px 8px;
 }
 
@@ -144,13 +161,8 @@ textarea {
 }
 
 .post-description {
-  width: 400px;
+  width: 450px;
   overflow: auto;
-}
-
-.justify-center {
-  display: flex;
-  justify-content: center;
 }
 
 .justify-start {
@@ -193,15 +205,21 @@ textarea {
 .comment-section {
   margin: 6px;
   width: 300px;
+  max-height: calc(100% - 12px);
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .comment-form {
   display: flex;
   align-items: flex-end;
+  margin-top: auto;
 }
 
 .submit-comment {
-  height: 20px;
+  height: 31px;
   width: 250px;
   margin: 2px;
   border: #282c34 solid;
@@ -222,7 +240,6 @@ textarea {
 }
 
 .comments-display {
-  height: 150px;
   overflow: auto;
 }
 
