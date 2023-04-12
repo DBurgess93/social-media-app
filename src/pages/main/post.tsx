@@ -11,7 +11,7 @@ import {
 import { Post as IPost } from "./main";
 import { auth, db } from "../../config/firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 interface Props {
   post: IPost;
 }
@@ -307,12 +307,25 @@ export const Post = (props: Props) => {
     getComments();
   }, []);
 
-  const postContent = document.querySelector('.post-content');
-  const commentSection = document.querySelector('.comment-section') as HTMLElement;
+  // const postContent = document.querySelector('.post-content');
+  // const commentSection = document.querySelector('.comment-section') as HTMLElement;
+
+  const bodyContentRef = useRef<HTMLDivElement>(null);
+  const commentSectionRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (bodyContentRef.current && commentSectionRef.current) {
+      const height = Math.max(
+        bodyContentRef.current.scrollHeight,
+        commentSectionRef.current.scrollHeight
+      );
+      commentSectionRef.current.style.height = height + "px";
+    }
+  }, []);
 
   return (
     <div className="body-content">
-      <div className="post-content" id="post-content">
+      <div className="post-content" ref={bodyContentRef}>
         <div className="header">
           <p className="username">@{post.username}</p>
           <p className="user-reaction">{userReaction()}</p>
@@ -355,7 +368,7 @@ export const Post = (props: Props) => {
           </div>
         </div>
       </div>
-      <div className="comment-section" style={{height: postContent?.clientHeight}}>
+      <div className="comment-section" ref={commentSectionRef}>
         <form onSubmit={handleSubmit} className="comment-form">
           <textarea
             placeholder="Add a comment...."
@@ -363,12 +376,15 @@ export const Post = (props: Props) => {
             value={commentInput}
             onChange={handleChange}
           />
-          <input type="submit" className="submit-comment-btn" value="&#x1F5E3;"/>
+          <input
+            type="submit"
+            className="submit-comment-btn"
+            value="&#x1F5E3;"
+          />
         </form>
         <div className="comments-display">
           {comments &&
-            comments
-            .map((comment) => (
+            comments.map((comment) => (
               <div key={comment.commentId} className="each-comment">
                 <p>
                   @{comment.commentAuth}: {comment.commentDesc}

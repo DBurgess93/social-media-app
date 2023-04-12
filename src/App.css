@@ -124,6 +124,7 @@ textarea {
   margin: 6px;
   width: 600px;
   background: #f0c58b;
+  height: auto;
 }
 
 .header {
@@ -205,7 +206,6 @@ textarea {
 .comment-section {
   margin: 6px;
   width: 300px;
-  max-height: calc(100% - 12px);
   overflow: auto;
   display: flex;
   flex-direction: column;
