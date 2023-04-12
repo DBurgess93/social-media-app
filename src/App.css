@@ -68,7 +68,10 @@ button:hover {
   padding: 0px 8px;
 }
 
-.submit:hover {
+.submit-post {
+}
+
+.submit-post:hover {
   cursor: pointer;
 }
 
@@ -80,21 +83,28 @@ button:hover {
 .form-box form {
   margin-top: 50px;
   padding: 30px 20px;
-  background: #a88c8a;
-  width: 350px;
-  border-radius: 16px;
+  background: #f0c58b;
+  border: #282c34 solid;
+  width: 500px;
+  border-radius: 8px;
+  box-shadow: #282c34 2px 2px;
   overflow: hidden;
 }
 
 .form-box input,
 textarea {
-  padding: 8px 18px;
-  margin: 3px 8px 16px 8px;
-  background-color: rgba(222, 239, 248, 0.877);
-  border: 0px transparent;
-  border-radius: 5px;
-  font-size: 16px;
+  height: 30px;
+  width: 450px;
+  margin: 2px;
+  border: #282c34 solid;
+  border-radius: 8px;
+  background: #e5dfd096;
   z-index: 1;
+  text-align: center;
+}
+
+.form-box textarea {
+  height: 150px;
 }
 
 .post {

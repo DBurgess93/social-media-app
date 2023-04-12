@@ -44,11 +44,11 @@ export const CreateForm = () => {
   return (
     <div className="form-box">
       <form onSubmit={handleSubmit(onCreatePost)}>
-        <input placeholder="Title..." {...register("title")} />
+        <input placeholder="Headline..." {...register("title")} />
         <p style={{ color: "red" }}>{errors.title?.message}</p>
         <textarea placeholder="Description..." {...register("description")} />
         <p style={{ color: "red" }}>{errors.description?.message}</p>
-        <input className="submit" type="submit" />
+        <input className="submit-post" type="submit" value="Post Your News!" />
       </form>
     </div>
   );
