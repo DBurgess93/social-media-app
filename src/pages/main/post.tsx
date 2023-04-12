@@ -309,9 +309,6 @@ export const Post = (props: Props) => {
 
   const postContent = document.querySelector('.post-content');
   const commentSection = document.querySelector('.comment-section') as HTMLElement;
-  if (postContent && commentSection) {
-    commentSection.style.height = postContent.clientHeight + 'px';
-  }
 
   return (
     <div className="body-content">
@@ -358,7 +355,7 @@ export const Post = (props: Props) => {
           </div>
         </div>
       </div>
-      <div className="comment-section">
+      <div className="comment-section" style={{height: postContent?.clientHeight}}>
         <form onSubmit={handleSubmit} className="comment-form">
           <textarea
             placeholder="Add a comment...."
