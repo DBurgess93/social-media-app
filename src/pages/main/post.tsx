@@ -363,7 +363,7 @@ export const Post = (props: Props) => {
             value={commentInput}
             onChange={handleChange}
           />
-          <input type="submit" className="submit-comment-btn"/>
+          <input type="submit" className="submit-comment-btn" value="&#x1F5E3;"/>
         </form>
         <div className="comments-display">
           {comments &&

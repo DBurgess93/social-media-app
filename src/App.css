@@ -195,11 +195,20 @@ textarea {
   width: 250px;
   margin: 2px;
   border: #282c34 solid;
+  border-radius: 8px;
   background: #e5dfd096;
 }
 
 .submit-comment-btn {
   height: 42px;
+  font-size: 30px;
+  background: none;
+  border: #282c34 solid;
+  border-radius: 8px;
+}
+
+.submit-comment-btn:hover {
+  cursor: pointer;
 }
 
 .comments-display {
