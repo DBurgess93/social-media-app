@@ -117,6 +117,11 @@ textarea {
   display: flex;
   align-items: flex-start;
   justify-content: center;
+  border: #282c34 solid;
+  box-shadow: #282c34 2px 2px;
+  margin: 16px;
+  border-radius: 8px;
+  background: #f08b8b;
 }
 
 .post-content + .comment-section {
@@ -129,7 +134,7 @@ textarea {
   border-radius: 8px;
   margin: 12px;
   width: 600px;
-  background: #f0c58b;
+  background: #b0b1e9ed;
   height: auto;
 }
 
@@ -264,6 +269,9 @@ textarea {
 .comments-display p {
   margin: 8px 0px;
   text-align: start;
+  background: rgba(128, 128, 128, 0.206);
+  border-radius: 4px;
+  color: #303038ed;
 }
 
 .each-comment {
