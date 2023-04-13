@@ -324,8 +324,8 @@ export const Post = (props: Props) => {
   }, []);
 
   return (
-    <div className="body-content">
-      <div className="post-content" ref={bodyContentRef}>
+    <div className="body-content" ref={bodyContentRef}>
+      <div className="post-content">
         <div className="header">
           <p className="username">@{post.username}</p>
           <p className="user-reaction">{userReaction()}</p>

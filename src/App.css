@@ -204,7 +204,7 @@ textarea {
 }
 
 .comment-section {
-  margin: 6px;
+  margin: auto 0px;
   width: 300px;
   overflow: auto;
   display: flex;
