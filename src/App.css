@@ -269,9 +269,10 @@ textarea {
 .comments-display p {
   margin: 8px 0px;
   text-align: start;
-  background: rgba(128, 128, 128, 0.206);
+  background: #4f4f55ed;
   border-radius: 4px;
-  color: #303038ed;
+  color: #f5f5fbe3;
+  padding: 3px;
 }
 
 .each-comment {
