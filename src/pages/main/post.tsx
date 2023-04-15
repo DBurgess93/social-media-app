@@ -7,7 +7,6 @@ import {
   deleteDoc,
   doc,
   endAt,
-  serverTimestamp,
 } from "firebase/firestore";
 import { Post as IPost } from "./main";
 import { auth, db } from "../../config/firebase";
@@ -37,7 +36,6 @@ interface Comment {
   userId: string;
   commentDesc: string;
   commentAuth: string | null;
-  createdAt: number;
 }
 
 export const Post = (props: Props) => {
@@ -47,7 +45,7 @@ export const Post = (props: Props) => {
   const [likes, setLikes] = useState<Like[] | null>(null);
   const [wows, setWows] = useState<Wow[] | null>(null);
   const [thinks, setThinks] = useState<Think[] | null>(null);
-  const [comments, setComments] = useState<Comment[]>([]);
+  const [comments, setComments] = useState<Comment[] | null>(null);
   const [commentInput, setCommentInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
@@ -89,15 +87,14 @@ export const Post = (props: Props) => {
 
   const getComments = async () => {
     const data = await getDocs(commentsDoc);
-    const commentsData = data.docs.map((doc) => ({
-      userId: doc.data().userId,
-      commentId: doc.id,
-      commentDesc: doc.data().commentDesc,
-      commentAuth: doc.data().commentAuth,
-      createdAt: doc.data().createdAt.toMillis()
-    }));
-    setComments(commentsData);
-    localStorage.setItem("comments", JSON.stringify(commentsData));
+    setComments(
+      data.docs.map((doc) => ({
+        userId: doc.data().userId,
+        commentId: doc.id,
+        commentDesc: doc.data().commentDesc,
+        commentAuth: doc.data().commentAuth,
+      }))
+    );
   };
 
   // This function uses await to pause the execution until a newDoc is added with the userId and postId
@@ -172,24 +169,27 @@ export const Post = (props: Props) => {
         postId: post.id,
         commentDesc: commentInput,
         commentAuth: user?.displayName,
-        creatAt: serverTimestamp(),
       });
       if (user) {
-        const newComment = {
-          userId: user?.uid,
-          commentId: newDoc.id,
-          commentDesc: commentInput,
-          commentAuth: user?.displayName,
-          createdAt: new Date().getTime(),
-        };
-
-        setComments((prevComments) => [...prevComments, newComment]);
-        const storedComments = JSON.parse(
-          localStorage.getItem("comments") || "[]"
-        );
-        localStorage.setItem(
-          "comments",
-          JSON.stringify([...storedComments, newComment])
+        setComments((prev) =>
+          prev
+            ? [
+                ...prev,
+                {
+                  userId: user?.uid,
+                  commentId: newDoc.id,
+                  commentDesc: commentInput,
+                  commentAuth: user?.displayName,
+                },
+              ]
+            : [
+                {
+                  userId: user?.uid,
+                  commentId: newDoc.id,
+                  commentDesc: commentInput,
+                  commentAuth: user?.displayName,
+                },
+              ]
         );
       }
       setCommentInput("");
@@ -305,15 +305,6 @@ export const Post = (props: Props) => {
 
   useEffect(() => {
     getComments();
-  }, []);
-
-  useEffect(() => {
-    if (localStorage.getItem("comments")) {
-      const storedComments = JSON.parse(localStorage.getItem("comments")!);
-      setComments(storedComments);
-    } else {
-      getComments();
-    }
   }, []);
 
   // const postContent = document.querySelector('.post-content');
