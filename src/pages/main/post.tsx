@@ -7,6 +7,7 @@ import {
   deleteDoc,
   doc,
   endAt,
+  serverTimestamp,
 } from "firebase/firestore";
 import { Post as IPost } from "./main";
 import { auth, db } from "../../config/firebase";
@@ -36,6 +37,7 @@ interface Comment {
   userId: string;
   commentDesc: string;
   commentAuth: string | null;
+  createdAt: number;
 }
 
 export const Post = (props: Props) => {
@@ -45,7 +47,7 @@ export const Post = (props: Props) => {
   const [likes, setLikes] = useState<Like[] | null>(null);
   const [wows, setWows] = useState<Wow[] | null>(null);
   const [thinks, setThinks] = useState<Think[] | null>(null);
-  const [comments, setComments] = useState<Comment[] | null>(null);
+  const [comments, setComments] = useState<Comment[]>([]);
   const [commentInput, setCommentInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
@@ -93,6 +95,7 @@ export const Post = (props: Props) => {
         commentId: doc.id,
         commentDesc: doc.data().commentDesc,
         commentAuth: doc.data().commentAuth,
+        createdAt: doc.data().createdAt.toMillis()
       }))
     );
   };
@@ -169,6 +172,7 @@ export const Post = (props: Props) => {
         postId: post.id,
         commentDesc: commentInput,
         commentAuth: user?.displayName,
+        creatAt: serverTimestamp(),
       });
       if (user) {
         setComments((prev) =>
@@ -180,6 +184,7 @@ export const Post = (props: Props) => {
                   commentId: newDoc.id,
                   commentDesc: commentInput,
                   commentAuth: user?.displayName,
+                  createdAt: new Date().getTime(),
                 },
               ]
             : [
@@ -188,6 +193,7 @@ export const Post = (props: Props) => {
                   commentId: newDoc.id,
                   commentDesc: commentInput,
                   commentAuth: user?.displayName,
+                  createdAt: new Date().getTime(),
                 },
               ]
         );

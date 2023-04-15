@@ -221,8 +221,8 @@ textarea {
   width: 300px;
   overflow: auto;
   display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  flex-direction: column-reverse;
+  justify-content: space-evenly;
 }
 
 .yo {
@@ -276,7 +276,7 @@ textarea {
 }
 
 .each-comment {
-  width: 250px;
+  width: fit-content;
 }
 
 /* Scrollbar Styling */

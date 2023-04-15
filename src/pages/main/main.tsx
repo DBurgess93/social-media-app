@@ -21,7 +21,7 @@ export const Main = () => {
       data.docs.map((doc) => ({ ...doc.data(), id: doc.id })) as Post[]
     );
   };
-
+   
   useEffect(() => {
     getPosts();
   }, []);
