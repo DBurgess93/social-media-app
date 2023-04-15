@@ -89,15 +89,15 @@ export const Post = (props: Props) => {
 
   const getComments = async () => {
     const data = await getDocs(commentsDoc);
-    setComments(
-      data.docs.map((doc) => ({
-        userId: doc.data().userId,
-        commentId: doc.id,
-        commentDesc: doc.data().commentDesc,
-        commentAuth: doc.data().commentAuth,
-        createdAt: doc.data().createdAt.toMillis()
-      }))
-    );
+    const commentsData = data.docs.map((doc) => ({
+      userId: doc.data().userId,
+      commentId: doc.id,
+      commentDesc: doc.data().commentDesc,
+      commentAuth: doc.data().commentAuth,
+      createdAt: doc.data().createdAt.toMillis()
+    }));
+    setComments(commentsData);
+    localStorage.setItem("comments", JSON.stringify(commentsData));
   };
 
   // This function uses await to pause the execution until a newDoc is added with the userId and postId
@@ -175,27 +175,21 @@ export const Post = (props: Props) => {
         creatAt: serverTimestamp(),
       });
       if (user) {
-        setComments((prev) =>
-          prev
-            ? [
-                ...prev,
-                {
-                  userId: user?.uid,
-                  commentId: newDoc.id,
-                  commentDesc: commentInput,
-                  commentAuth: user?.displayName,
-                  createdAt: new Date().getTime(),
-                },
-              ]
-            : [
-                {
-                  userId: user?.uid,
-                  commentId: newDoc.id,
-                  commentDesc: commentInput,
-                  commentAuth: user?.displayName,
-                  createdAt: new Date().getTime(),
-                },
-              ]
+        const newComment = {
+          userId: user?.uid,
+          commentId: newDoc.id,
+          commentDesc: commentInput,
+          commentAuth: user?.displayName,
+          createdAt: new Date().getTime(),
+        };
+
+        setComments((prevComments) => [...prevComments, newComment]);
+        const storedComments = JSON.parse(
+          localStorage.getItem("comments") || "[]"
+        );
+        localStorage.setItem(
+          "comments",
+          JSON.stringify([...storedComments, newComment])
         );
       }
       setCommentInput("");
@@ -311,6 +305,15 @@ export const Post = (props: Props) => {
 
   useEffect(() => {
     getComments();
+  }, []);
+
+  useEffect(() => {
+    if (localStorage.getItem("comments")) {
+      const storedComments = JSON.parse(localStorage.getItem("comments")!);
+      setComments(storedComments);
+    } else {
+      getComments();
+    }
   }, []);
 
   // const postContent = document.querySelector('.post-content');
