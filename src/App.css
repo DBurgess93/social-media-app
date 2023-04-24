@@ -4,7 +4,11 @@
 
 body {
   font-family: "Satoshi", sans-serif;
-  background-color: #e5dfd0;
+  /* background-color: #E0DFE1; */
+  background-image: url(/src/images/6c19d38bdfb136664009ce3eaa4737f0.jpg);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
 }
 
 /* Nav Styling */
@@ -33,7 +37,7 @@ button:hover {
   justify-content: flex-end;
   align-items: center;
   gap: 50px;
-  background: #e5dfd0;
+  /* background: #e5dfd0; */
   color: #131210;
   padding: 16px 16px;
   font-family: "Satoshi", sans-serif;
@@ -121,7 +125,8 @@ textarea {
   box-shadow: #282c34 2px 2px;
   margin: 16px;
   border-radius: 8px;
-  background: #f08b8b;
+  background: #e8d9db;
+  opacity: .95;
 }
 
 .post-content + .comment-section {
@@ -134,7 +139,7 @@ textarea {
   border-radius: 8px;
   margin: 12px;
   width: 600px;
-  background: #b0b1e9ed;
+  background: #cfbcdf;
   height: auto;
 }
 
