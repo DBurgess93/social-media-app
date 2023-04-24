@@ -12,11 +12,20 @@
 
 body {
   font-family: "Satoshi", sans-serif;
-  background-color: #E0DFE1;
+}
+
+body::before {
+  content: "";
   background-image: url(/src/images/6c19d38bdfb136664009ce3eaa4737f0.jpg);
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;
+  position: fixed;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+  opacity: .75;
 }
 
 .main-head {
@@ -133,6 +142,7 @@ textarea {
   display: flex;
   align-items: flex-start;
   justify-content: center;
+  position: relative;
   /* border: #282c34 solid; */
   /* box-shadow: #282c34 5px 5px; */
   margin: 16px;
