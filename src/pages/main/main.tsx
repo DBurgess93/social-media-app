@@ -27,7 +27,7 @@ export const Main = () => {
   }, []);
   return (
     <div>
-      <h1>Todays News</h1>
+      <h1 className="main-head">Todays News</h1>
       {postsList?.map((post) => (
         <Post post={post} />
       ))}
