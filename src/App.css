@@ -2,6 +2,10 @@
   text-align: center;
 }
 
+.bg-img {
+
+}
+
 body {
   font-family: "Satoshi", sans-serif;
   /* background-color: #E0DFE1; */
@@ -121,12 +125,12 @@ textarea {
   display: flex;
   align-items: flex-start;
   justify-content: center;
-  border: #282c34 solid;
-  box-shadow: #282c34 2px 2px;
+  /* border: #282c34 solid; */
+  /* box-shadow: #282c34 5px 5px; */
   margin: 16px;
   border-radius: 8px;
-  background: #e8d9db;
-  opacity: .95;
+  /* background: #e8d9db; */
+  /* opacity: .95; */
 }
 
 .post-content + .comment-section {
@@ -139,8 +143,9 @@ textarea {
   border-radius: 8px;
   margin: 12px;
   width: 600px;
-  background: #cfbcdf;
+  background: #281F13;
   height: auto;
+  color: #f5f5fbe3;
 }
 
 .header {
@@ -274,8 +279,8 @@ textarea {
 .comments-display p {
   margin: 8px 0px;
   text-align: start;
-  background: #4f4f55ed;
-  border-radius: 4px;
+  /* background: #4f4f55ed; */
+  /* border-radius: 4px; */
   color: #f5f5fbe3;
   padding: 3px;
 }
