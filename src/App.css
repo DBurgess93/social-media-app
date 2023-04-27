@@ -25,11 +25,11 @@ body::before {
   right: 0px;
   bottom: 0px;
   left: 0px;
-  opacity: .75;
+  opacity: .4;
 }
 
 .main-head {
-  border: white solid;
+  color: white;
 }
 
 /* Nav Styling */
@@ -58,8 +58,8 @@ button:hover {
   justify-content: flex-end;
   align-items: center;
   gap: 50px;
-  /* background: #e5dfd0; */
-  color: #131210;
+  background: #281F13;
+  color: #f5f5fbe3;
   padding: 16px 16px;
   font-family: "Satoshi", sans-serif;
   font-size: 20px;
@@ -79,6 +79,7 @@ button:hover {
 
 .links a {
   padding: 2px 8px;
+  color: #f5f5fbe3;
 }
 
 .links a:hover {
@@ -247,13 +248,17 @@ textarea {
 .comment-section {
   margin: auto 0px;
   width: 300px;
+  border: #282c34 solid;
+  box-shadow: #282c34 2px 2px;
+  border-radius: 8px;
+  background-color: #281F13;
   overflow: auto;
   display: flex;
   flex-direction: column-reverse;
   justify-content: space-evenly;
 }
 
-.yo {
+/* .yo {
   border: #282c34 solid;
   box-shadow: #282c34 2px 2px;
   border-radius: 8px;
@@ -261,7 +266,7 @@ textarea {
   width: 600px;
   background: #f0c58b;
   height: auto;
-}
+} */
 
 .comment-form {
   display: flex;

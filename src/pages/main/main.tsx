@@ -27,7 +27,9 @@ export const Main = () => {
   }, []);
   return (
     <div>
-      <h1 className="main-head">Todays News</h1>
+      <br></br>
+      <br></br>
+      <br></br>
       {postsList?.map((post) => (
         <Post post={post} />
       ))}
