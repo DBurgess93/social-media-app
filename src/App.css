@@ -7,8 +7,6 @@ body {
   background-color: #EDFBFC;
 }
 
-
-
 .main-head {
   color: white;
 }
@@ -144,7 +142,7 @@ textarea {
   border-radius: 8px;
   margin: 12px;
   width: 600px;
-  background: #001314;
+  background-color: #002629;
   height: auto;
   color: #f5f5fbe3;
 }
@@ -234,6 +232,7 @@ textarea {
   box-shadow: #282c34 2px 2px;
   border-radius: 8px;
   background-color: #002629;
+  background: #001314;
   overflow: auto;
   display: flex;
   flex-direction: column-reverse;
@@ -279,6 +278,7 @@ textarea {
 
 .comments-display {
   overflow: auto;
+  padding: 12px;
 }
 
 .comments-display p {
@@ -286,7 +286,7 @@ textarea {
   text-align: start;
   /* background: #4f4f55ed; */
   /* border-radius: 4px; */
-  color: #f5f5fbe3;
+  color: #19A6B3;
   padding: 3px;
 }
 
