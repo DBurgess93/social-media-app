@@ -4,7 +4,10 @@
 
 body {
   font-family: "Satoshi", sans-serif;
-  background-color: #EDFBFC;
+  background: #130303;
+  background: #B9C0DA;
+  margin: 0px;
+  color: #B9C0DA;
 }
 
 .main-head {
@@ -37,12 +40,12 @@ button:hover {
   justify-content: flex-end;
   align-items: center;
   gap: 50px;
-  background: #19A6B3;
+  background: #130303;;
   color: #f5f5fbe3;
   padding: 16px 16px;
   font-family: "Satoshi", sans-serif;
   font-size: 20px;
-  border-radius: 6px;
+  /* border-radius: 6px; */
   /* border-top: #131210 solid;
   border-bottom: #131210 solid; */
 }
@@ -128,8 +131,9 @@ textarea {
   /* box-shadow: #282c34 5px 5px; */
   margin: 16px;
   border-radius: 8px;
-  /* background: #e8d9db; */
+  /* background: #046E8F; */
   /* opacity: .95; */
+  color: #B9C0DA;
 }
 
 .post-content + .comment-section {
@@ -137,14 +141,13 @@ textarea {
 }
 
 .post-content {
-  border: #282c34 solid;
-  box-shadow: #282c34 2px 2px;
+  /* border: #282c34 solid; */
+  /* box-shadow: #282c34 2px 2px; */
   border-radius: 8px;
   margin: 12px;
   width: 600px;
-  background-color: #002629;
+  background: #130303;
   height: auto;
-  color: #f5f5fbe3;
 }
 
 .header {
@@ -228,11 +231,10 @@ textarea {
 .comment-section {
   margin: auto 0px;
   width: 300px;
-  border: #282c34 solid;
-  box-shadow: #282c34 2px 2px;
+  /* border: #282c34 solid; */
+  /* box-shadow: #282c34 2px 2px; */
   border-radius: 8px;
-  background-color: #002629;
-  background: #001314;
+  background: #130303;
   overflow: auto;
   display: flex;
   flex-direction: column-reverse;
